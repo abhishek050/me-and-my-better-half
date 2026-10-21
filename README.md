@@ -21,7 +21,7 @@ A playful, mobile-first love scrapbook made by Abhishek for Tanu. It includes a 
 The repository can be published with GitHub Pages: open the repository's **Settings → Pages**, choose **Deploy from a branch**, select `main` and `/ (root)`, then save. The site files are at the repository root.
 
 ## Privacy
-This is a static site. The photos in this repository and on the published website are publicly accessible. Do not add anything you would not want shared with anyone who can access the repository or site.
+This is a static site. Photos included in the repository or published site are available to people who can access them. If you publish the site publicly, anyone with the URL may be able to view and download its photos. Do not add anything you would not want shared with that audience.
 
 ## Fonts
 The page uses Google Fonts when online and falls back to system fonts if unavailable. For fully offline use, remove the Google Fonts links in `index.html`.
