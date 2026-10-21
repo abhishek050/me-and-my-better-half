@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f6efe5">
   <meta name="description" content="A tiny, playful world made with love by Abhishek for Tanu.">
-  <title>For Tanu, Always ♡</title>
+  <title>For Tanu, Always</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Caveat:wght@400;500&display=swap" rel="stylesheet">
@@ -14,25 +14,27 @@
 <body>
   <div class="grain" aria-hidden="true"></div>
   <header class="topbar">
-    <a class="wordmark" href="#home">for Tanu, always <span>♡</span></a>
-    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
+    <a class="wordmark" href="#home">for Tanu, always <span>·</span></a>
+    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">Menu</button>
     <nav class="nav">
       <a href="#story">Our beginning</a>
       <a href="#gallery">Little moments</a>
       <a href="#playroom">Play with me</a>
       <a href="#soundtrack">Soundtrack</a>
       <a href="#letters">Letters</a>
+      <button class="checkin-link" id="reopenWelcome" type="button">Mood check-in</button>
     </nav>
   </header>
 
   <main>
     <section class="hero section" id="home">
       <div class="hero-copy reveal">
-        <p class="eyebrow"><span class="tiny-star">✳</span> A little love letter from Abhishek</p>
+        <p class="eyebrow">A little love letter from Abhishek</p>
         <h1>Hey Tanu,<br><em>you make life lovely.</em></h1>
         <p class="hero-lede">I made you a tiny internet home: part scrapbook, part playground, and completely full of all the ways I adore you.</p>
-        <button class="primary-btn" id="openLetter">Open your letter <span>♡</span></button>
+        <button class="primary-btn" id="openLetter">Read my letter</button>
         <p class="handwritten hero-note">made by Abhishek, with all my heart</p>
+        <aside class="checkin-note" id="checkinNote" hidden><span>MY NOTE FOR YOU</span><p id="todayNote"></p></aside>
       </div>
       <div class="hero-art reveal">
         <div class="sun-disc"></div>
@@ -40,23 +42,20 @@
           <img src="assets/photos/together/together2.webp" alt="Tanu and Abhishek smiling together">
           <span class="photo-caption">my favourite kind of us</span>
         </div>
-        <div class="floating-note note-one">my favourite person ☺</div>
-        <div class="floating-note note-two">Tanu + Abhishek ♡</div>
-        <span class="hero-spark spark-one">✳</span><span class="hero-spark spark-two">✧</span>
       </div>
       <a class="scroll-cue" href="#story"><span></span> keep wandering</a>
     </section>
 
     <section class="intro-strip">
       <p>One very lucky Abhishek.</p>
-      <p class="handwritten">One wonderful Tanu. So many memories to make. ♡</p>
+      <p class="handwritten">One wonderful Tanu. So many memories to make.</p>
     </section>
 
     <section class="play-section section" aria-labelledby="loveMeterTitle">
       <div class="play-card reveal">
         <div class="play-copy"><p class="eyebrow">a very scientific experiment</p><h2 id="loveMeterTitle">How much do I<br><em>love you, Tanu?</em></h2><p>Slide to reveal the totally accurate answer.</p></div>
-        <div class="meter-wrap"><div class="meter-hearts" id="meterHearts" aria-hidden="true">♡ ♡ ♡ ♡ ♡</div><input id="loveMeter" type="range" min="0" max="100" value="72" aria-label="How much Abhishek loves Tanu"><p id="meterMessage" class="handwritten" aria-live="polite">A whole lot. And then some.</p></div>
-        <button class="surprise-btn" id="surpriseMe">A tiny surprise <span>✦</span></button>
+        <div class="meter-wrap"><div class="meter-number" id="meterNumber" aria-hidden="true">72</div><input id="loveMeter" type="range" min="0" max="100" value="72" aria-label="How much Abhishek loves Tanu"><p id="meterMessage" class="handwritten" aria-live="polite">A whole lot. And then some.</p></div>
+        <button class="surprise-btn" id="surpriseMe">Show me a note</button>
       </div>
     </section>
 
@@ -78,13 +77,13 @@
           <p>I made this scrapbook so you can see the world the way I do: with you in the frame, and me feeling ridiculously lucky behind the camera.</p>
           <blockquote>“My favourite thing about the future is that I get to imagine you in it.”</blockquote>
           <p>I can't wait for every silly selfie, thoughtful surprise, and ordinary day that turns into one of our favourite memories.</p>
-          <span class="handwritten signature">Love, Abhishek ♡</span>
+          <span class="handwritten signature">Love, Abhishek</span>
         </div>
       </div>
       <div class="timeline">
-        <div class="timeline-item reveal"><span class="timeline-dot">♡</span><div><p class="timeline-label">BEFORE I KNEW YOU</p><h3>Little Tanu, little Abhishek</h3><p>Two tiny plotlines, heading toward the best crossover.</p></div></div>
-        <div class="timeline-item reveal"><span class="timeline-dot">♡</span><div><p class="timeline-label">MY FAVORITE CHAPTER</p><h3>The one where I get to call you mine</h3><p>My camera roll has never looked this lovely.</p></div></div>
-        <div class="timeline-item reveal"><span class="timeline-dot">♡</span><div><p class="timeline-label">WHAT I'M LOOKING FORWARD TO</p><h3>All the ordinary days ahead</h3><p>I want to keep choosing you in every little moment.</p></div></div>
+        <div class="timeline-item reveal"><span class="timeline-dot">01</span><div><p class="timeline-label">BEFORE I KNEW YOU</p><h3>Little Tanu, little Abhishek</h3><p>Two tiny plotlines, heading toward the best crossover.</p></div></div>
+        <div class="timeline-item reveal"><span class="timeline-dot">02</span><div><p class="timeline-label">MY FAVORITE CHAPTER</p><h3>The one where I get to call you mine</h3><p>My camera roll has never looked this lovely.</p></div></div>
+        <div class="timeline-item reveal"><span class="timeline-dot">03</span><div><p class="timeline-label">WHAT I'M LOOKING FORWARD TO</p><h3>All the ordinary days ahead</h3><p>I want to keep choosing you in every little moment.</p></div></div>
       </div>
     </section>
 
@@ -98,7 +97,7 @@
         <button class="gallery-tab active" data-filter="all">All the love</button><button class="gallery-tab" data-filter="together">Us together</button><button class="gallery-tab" data-filter="tanu">Tanu</button><button class="gallery-tab" data-filter="abhishek">Abhishek</button><button class="gallery-tab" data-filter="childhood">Tiny humans</button>
       </div>
       <div class="photo-grid" id="photoGrid"></div>
-      <p class="gallery-foot handwritten">A whole album of reasons I adore you. ♡</p>
+      <p class="gallery-foot handwritten">A little album of the moments I keep close.</p>
     </section>
 
     <section class="games-section section" id="playroom">
@@ -117,7 +116,7 @@
             <p class="catch-hint" id="catchHint">Press start and tap the heart!</p>
             <button class="catch-heart" id="catchHeart" type="button" aria-label="Catch my heart" hidden>♡</button>
           </div>
-          <button class="game-button" id="startCatch">Start catching <span>♡</span></button>
+          <button class="game-button" id="startCatch">Start catching</button>
           <p class="game-result handwritten" id="catchResult" aria-live="polite"></p>
         </article>
 
@@ -129,12 +128,12 @@
           <h4 id="quizQuestion"></h4>
           <div class="quiz-choices" id="quizChoices"></div>
           <p class="quiz-feedback" id="quizFeedback" aria-live="polite"></p>
-          <button class="game-button" id="nextQuestion" disabled>Pick an answer first <span>↗</span></button>
+          <button class="game-button" id="nextQuestion" disabled>Pick an answer first</button>
         </article>
       </div>
       <div class="date-roulette reveal">
         <div><p class="game-label">BONUS ROUND · OUR NEXT LITTLE ADVENTURE</p><h3>What should I plan for us?</h3><p id="dateIdea" aria-live="polite">I have a few cute ideas up my sleeve…</p></div>
-        <button class="game-button" id="spinDate">Pick our date <span>✦</span></button>
+        <button class="game-button" id="spinDate">Pick our date</button>
       </div>
     </section>
 
@@ -145,7 +144,7 @@
         <p class="section-subtitle">Tap for another reason. I could keep going all day.</p>
       </div>
       <div class="reasons-layout">
-        <div class="reason-feature reveal"><span class="big-heart">♡</span><p class="handwritten">a small truth</p><h3 id="reasonText">The way a little conversation with you can turn my whole day around.</h3><button class="text-btn" id="nextReason">Tell me another <span>↗</span></button></div>
+        <div class="reason-feature reveal"><span class="reason-index">A NOTE FROM ME</span><h3 id="reasonText">The way a little conversation with you can turn my whole day around.</h3><button class="text-btn" id="nextReason">One more reason</button></div>
         <div class="reason-stack reveal">
           <div class="reason-mini"><span>01</span><p>Your messages can turn my most ordinary day into a good one.</p></div>
           <div class="reason-mini"><span>02</span><p>I love how there is always another little thing to learn about you.</p></div>
@@ -156,17 +155,16 @@
 
     <section class="soundtrack-section section" id="soundtrack">
       <div class="music-art reveal">
-        <div class="vinyl"><div class="vinyl-label">♡<small>side A</small></div></div>
-        <span class="music-note note-a">♪</span><span class="music-note note-b">♫</span>
+        <div class="vinyl"><div class="vinyl-label">A / T<small>side one</small></div></div>
       </div>
       <div class="music-copy reveal">
         <p class="eyebrow">05 / songs that make me think of you</p>
         <h2>For the feelings<br>that <em>words can't hold.</em></h2>
         <p>I made us a little shelf for the songs I want to share with you. Press play whenever you need a tiny reminder that I'm thinking of you.</p>
         <div class="song-list">
-          <a class="song-row" href="https://www.youtube.com/results?search_query=Jagjit+Singh+ghazals" target="_blank" rel="noopener"><span class="song-play">↗</span><span><strong>A little ghazal hour</strong><small>Jagjit Singh · explore ghazals</small></span><span class="song-side">01</span></a>
-          <a class="song-row" href="https://www.youtube.com/results?search_query=romantic+Hindi+acoustic+songs" target="_blank" rel="noopener"><span class="song-play">↗</span><span><strong>For our quiet evenings</strong><small>Romantic Hindi songs</small></span><span class="song-side">02</span></a>
-          <a class="song-row" href="https://www.youtube.com/results?search_query=Jagjit+Singh+Hosh+Waloon+Ko+Khabar+Kya" target="_blank" rel="noopener"><span class="song-play">↗</span><span><strong>One to listen to together</strong><small>Choose our song</small></span><span class="song-side">03</span></a>
+          <a class="song-row" href="https://www.youtube.com/results?search_query=Jagjit+Singh+ghazals" target="_blank" rel="noopener"><span class="song-play">Listen</span><span><strong>A little ghazal hour</strong><small>Jagjit Singh · explore ghazals</small></span><span class="song-side">01</span></a>
+          <a class="song-row" href="https://www.youtube.com/results?search_query=romantic+Hindi+acoustic+songs" target="_blank" rel="noopener"><span class="song-play">Listen</span><span><strong>For our quiet evenings</strong><small>Romantic Hindi songs</small></span><span class="song-side">02</span></a>
+          <a class="song-row" href="https://www.youtube.com/results?search_query=Jagjit+Singh+Hosh+Waloon+Ko+Khabar+Kya" target="_blank" rel="noopener"><span class="song-play">Listen</span><span><strong>One to listen to together</strong><small>Choose our song</small></span><span class="song-side">03</span></a>
         </div>
         <p class="editable-hint">Swap these links for your favourite songs or official music videos.</p>
       </div>
@@ -179,14 +177,14 @@
         <p class="section-subtitle">A few adventures I'm already looking forward to.</p>
       </div>
       <div class="bucket-list reveal">
-        <label class="bucket-item"><input type="checkbox"><span class="checkmark">♡</span><span>Watch the sky change colours at sunset.</span><em>01</em></label>
-        <label class="bucket-item"><input type="checkbox"><span class="checkmark">♡</span><span>Take a long drive with our favourite songs.</span><em>02</em></label>
-        <label class="bucket-item"><input type="checkbox"><span class="checkmark">♡</span><span>Find a quiet place and listen to ghazals together.</span><em>03</em></label>
-        <label class="bucket-item"><input type="checkbox"><span class="checkmark">♡</span><span>Travel somewhere neither of us has been.</span><em>04</em></label>
-        <label class="bucket-item"><input type="checkbox"><span class="checkmark">♡</span><span>Make a tradition that's completely ours.</span><em>05</em></label>
-        <label class="bucket-item custom-item"><input type="checkbox"><span class="checkmark">♡</span><span contenteditable="true" aria-label="Edit this future wish">Add a dream of your own here…</span><em>06</em></label>
+        <label class="bucket-item"><input type="checkbox"><span class="checkmark" aria-hidden="true"></span><span>Watch the sky change colours at sunset.</span><em>01</em></label>
+        <label class="bucket-item"><input type="checkbox"><span class="checkmark" aria-hidden="true"></span><span>Take a long drive with our favourite songs.</span><em>02</em></label>
+        <label class="bucket-item"><input type="checkbox"><span class="checkmark" aria-hidden="true"></span><span>Find a quiet place and listen to ghazals together.</span><em>03</em></label>
+        <label class="bucket-item"><input type="checkbox"><span class="checkmark" aria-hidden="true"></span><span>Travel somewhere neither of us has been.</span><em>04</em></label>
+        <label class="bucket-item"><input type="checkbox"><span class="checkmark" aria-hidden="true"></span><span>Make a tradition that's completely ours.</span><em>05</em></label>
+        <label class="bucket-item custom-item"><input type="checkbox"><span class="checkmark" aria-hidden="true"></span><span contenteditable="true" aria-label="Edit this future wish">Add a dream of your own here…</span><em>06</em></label>
       </div>
-      <p class="handwritten future-note">I have a long list of somedays, and I want you in every one. ♡</p>
+      <p class="handwritten future-note">I have a long list of somedays, and I want you in every one.</p>
     </section>
 
     <section class="readwhen-section section" id="letters">
@@ -196,50 +194,70 @@
         <p class="section-subtitle">I tucked a few words away for the days we could use an extra hug.</p>
       </div>
       <div class="envelope-grid">
-        <button class="envelope-card reveal" data-letter="miss"><span class="envelope-icon">✉</span><span class="envelope-label">OPEN WHEN</span><strong>You miss me</strong><span class="handwritten">a little hug in words</span></button>
-        <button class="envelope-card reveal" data-letter="hard"><span class="envelope-icon">✉</span><span class="envelope-label">OPEN WHEN</span><strong>Your day feels heavy</strong><span class="handwritten">breathe, my favourite</span></button>
-        <button class="envelope-card reveal" data-letter="doubt"><span class="envelope-icon">✉</span><span class="envelope-label">OPEN WHEN</span><strong>You need a reminder</strong><span class="handwritten">you matter to me</span></button>
-        <button class="envelope-card reveal" data-letter="future"><span class="envelope-icon">✉</span><span class="envelope-label">OPEN WHEN</span><strong>It's our wedding day</strong><span class="handwritten">for the day we dreamed of</span></button>
+        <button class="envelope-card reveal" data-letter="miss"><span class="envelope-icon">01</span><span class="envelope-label">A NOTE FOR</span><strong>You miss me</strong><span class="handwritten">a little hug in words</span></button>
+        <button class="envelope-card reveal" data-letter="hard"><span class="envelope-icon">02</span><span class="envelope-label">A NOTE FOR</span><strong>Your day feels heavy</strong><span class="handwritten">breathe, my favourite</span></button>
+        <button class="envelope-card reveal" data-letter="doubt"><span class="envelope-icon">03</span><span class="envelope-label">A NOTE FOR</span><strong>You need a reminder</strong><span class="handwritten">you matter to me</span></button>
+        <button class="envelope-card reveal" data-letter="future"><span class="envelope-icon">04</span><span class="envelope-label">A NOTE FOR</span><strong>Our wedding day</strong><span class="handwritten">for the day we dreamed of</span></button>
       </div>
     </section>
 
     <section class="closing-section section">
-      <div class="closing-ornament">✳</div>
       <p class="eyebrow">one last thing</p>
       <h2>My favorite thing about tomorrow<br><em>is that it has you in it.</em></h2>
       <p class="closing-copy">There are places I still want to take you, songs I want to hear with you, jokes we haven't made yet, and ordinary days that I know I'll treasure because they're ours.</p>
       <p class="closing-copy">I made this little world to remind you how loved you are. I can't wait to keep making our real one together.</p>
-      <p class="handwritten closing-sign">All my love, all my days. — Abhishek ♡</p>
+      <p class="handwritten closing-sign">All my love, all my days. — Abhishek</p>
       <button class="outline-btn" id="backToTop">Back to the beginning ↑</button>
     </section>
   </main>
 
-  <footer class="footer"><span>made with love by Abhishek</span><span>♡</span><span>for Tanu, always</span></footer>
+  <footer class="footer"><span>Abhishek, always yours</span><span>For Tanu</span></footer>
+
+  <dialog id="welcomeDialog" class="welcome-dialog" aria-labelledby="welcomeQuestion">
+    <div class="welcome-layout">
+      <div class="welcome-photo"><img src="assets/photos/together/together2.webp" alt="Tanu and Abhishek together"><div><span>A LITTLE SPACE</span><strong>just for us</strong></div></div>
+      <div class="welcome-content">
+        <div class="welcome-topline"><p class="eyebrow">A QUICK CHECK-IN</p><span id="welcomeStepCount">01 / 04</span></div>
+        <div class="welcome-progress" aria-hidden="true"><span id="welcomeProgress"></span></div>
+        <h2 id="welcomeQuestion">How are you arriving here today?</h2>
+        <p class="welcome-description" id="welcomeDescription">Pick the shade that feels most like you, and I'll dress this little place around it.</p>
+        <div class="welcome-options" id="welcomeOptions"></div>
+        <div class="welcome-range-wrap" id="welcomeRangeWrap" hidden>
+          <div class="love-rate-heading"><span>How much do you love me today?</span><strong><span id="loveRateValue">8</span><small> / 10</small></strong></div>
+          <input id="loveRate" type="range" min="1" max="10" value="8" aria-label="Rate how much you love Abhishek today">
+          <div class="range-ends"><span>A tiny bit</span><span>Ridiculously much</span></div>
+        </div>
+        <p class="welcome-feedback" id="welcomeFeedback" aria-live="polite"></p>
+        <div class="welcome-actions"><button class="welcome-back" id="welcomeBack" type="button" hidden>Back</button><button class="welcome-next" id="welcomeNext" type="button" disabled>Continue</button></div>
+        <button class="welcome-skip" id="welcomeSkip" type="button">Skip the questions</button>
+      </div>
+    </div>
+  </dialog>
 
   <dialog id="letterDialog" class="modal">
-    <button class="modal-close" data-close aria-label="Close">×</button>
+    <button class="modal-close" data-close aria-label="Close">Close</button>
     <div class="letter-paper">
       <p class="handwritten">my dearest Tanu,</p>
       <h2>To my favourite<br><em>person in the world.</em></h2>
       <p>I made you a little corner of the internet because you deserve a little corner of everything good. It has our photos, a few silly surprises, and a lot of love from me to you.</p>
       <p>Thank you for being exactly you: for the smiles, the kindness, the little moments, and all the ways you make my days brighter. I feel very lucky that I get to call you mine.</p>
       <p>Here's to more photographs, more laughter, more thoughtful surprises, and a lifetime of choosing each other.</p>
-      <p class="handwritten letter-sign">I love you, Tanu. Always. ♡</p>
+      <p class="handwritten letter-sign">I love you, Tanu. Always.</p>
     </div>
   </dialog>
 
   <dialog id="readDialog" class="modal">
-    <button class="modal-close" data-close aria-label="Close">×</button>
+    <button class="modal-close" data-close aria-label="Close">Close</button>
     <div class="letter-paper small-paper">
       <p class="handwritten" id="readKicker">a note for you</p>
       <h2 id="readTitle">A little reminder</h2>
       <p id="readMessage"></p>
-      <p class="handwritten letter-sign">Love, Abhishek ♡</p>
+      <p class="handwritten letter-sign">Love, Abhishek</p>
     </div>
   </dialog>
 
   <dialog id="lightbox" class="lightbox">
-    <button class="modal-close lightbox-close" data-close aria-label="Close">×</button>
+    <button class="modal-close lightbox-close" data-close aria-label="Close">Close</button>
     <img id="lightboxImage" alt="A memory from our photo collection">
     <p id="lightboxCaption" class="handwritten"></p>
   </dialog>

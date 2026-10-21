@@ -79,12 +79,14 @@ const nav = $(".nav");
 menuToggle.addEventListener("click", () => {
   const open = nav.classList.toggle("open");
   menuToggle.setAttribute("aria-expanded", String(open));
-  menuToggle.textContent = open ? "×" : "☰";
+  menuToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  menuToggle.textContent = open ? "Close" : "Menu";
 });
 $$(".nav a").forEach(link => link.addEventListener("click", () => {
   nav.classList.remove("open");
   menuToggle.setAttribute("aria-expanded", "false");
-  menuToggle.textContent = "☰";
+  menuToggle.setAttribute("aria-label", "Open menu");
+  menuToggle.textContent = "Menu";
 }));
 
 // Gentle reveal on scroll; gracefully falls back if IntersectionObserver is unavailable.
@@ -172,17 +174,17 @@ gallery.addEventListener("click", event => {
 // The very serious love meter has an entirely unscientific answer.
 const meter = $("#loveMeter");
 const meterMessage = $("#meterMessage");
-const meterHearts = $("#meterHearts");
-const meterLines = ["Just a little? Try again, miss Tanu. ♡", "A very respectable amount of love.", "Now we're getting somewhere!", "Abhishek-sized, Tanu-shaped love.", "The scale has run out. Love you infinity! ♡"];
+const meterNumber = $("#meterNumber");
+const meterLines = ["Just a little? Try again, miss Tanu.", "A very respectable amount of love.", "Now we're getting somewhere.", "Abhishek-sized, Tanu-shaped love.", "The scale has run out. I love you infinity."];
 let maxConfetti = false;
 meter.addEventListener("input", () => {
   const value = Number(meter.value);
   meter.style.setProperty("--meter-fill", `${value}%`);
   meterMessage.textContent = meterLines[Math.min(4, Math.floor(value / 25))];
-  meterHearts.textContent = "♥ ".repeat(Math.ceil(value / 20)) + "♡ ".repeat(5 - Math.ceil(value / 20));
-  meterHearts.classList.remove("pop");
-  void meterHearts.offsetWidth;
-  meterHearts.classList.add("pop");
+  meterNumber.textContent = String(value);
+  meterNumber.classList.remove("pop");
+  void meterNumber.offsetWidth;
+  meterNumber.classList.add("pop");
   if (value >= 100 && !maxConfetti) { burstHearts(24); maxConfetti = true; }
   if (value < 100) maxConfetti = false;
 });
@@ -190,18 +192,17 @@ meter.addEventListener("input", () => {
 const surprises = ["Tanu, you are my favourite notification.", "I love you more than chai. And that's serious.", "You + me + snacks = a perfect date.", "If hugs were pixels, this whole page would be one big hug.", "Breaking news: Abhishek is still completely smitten."];
 $("#surpriseMe").addEventListener("click", event => {
   const button = event.currentTarget;
-  button.innerHTML = `${surprises[Math.floor(Math.random() * surprises.length)]} <span>♡</span>`;
+  button.textContent = surprises[Math.floor(Math.random() * surprises.length)];
   button.classList.add("surprise-revealed");
   burstHearts(18);
 });
 
 function burstHearts(count = 12) {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  const shapes = ["♡", "♥", "✦", "✿", "✨"];
   for (let i = 0; i < count; i++) {
     const heart = document.createElement("span");
     heart.className = "burst-heart";
-    heart.textContent = shapes[Math.floor(Math.random() * shapes.length)];
+    heart.setAttribute("aria-hidden", "true");
     heart.style.setProperty("--x", `${(Math.random() - 0.5) * 90}vw`);
     heart.style.setProperty("--drift", `${(Math.random() - 0.5) * 140}px`);
     heart.style.setProperty("--spin", `${Math.random() * 80 - 40}deg`);
@@ -211,20 +212,6 @@ function burstHearts(count = 12) {
     heart.addEventListener("animationend", () => heart.remove(), { once: true });
   }
 }
-
-// A small heart appears wherever she taps or clicks.
-document.addEventListener("pointerdown", event => {
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  if (event.pointerType === "touch" || event.pointerType === "mouse") {
-    const spark = document.createElement("span");
-    spark.className = "tap-spark";
-    spark.textContent = Math.random() > 0.5 ? "♡" : "✦";
-    spark.style.left = `${event.clientX}px`;
-    spark.style.top = `${event.clientY}px`;
-    document.body.append(spark);
-    spark.addEventListener("animationend", () => spark.remove(), { once: true });
-  }
-}, { passive: true });
 
 // Game 01: a tiny, increasingly chaotic heart-catching challenge.
 const catchArena = $("#catchArena");
@@ -254,12 +241,12 @@ function finishCatchGame() {
   catchHint.textContent = "Time for a little victory dance.";
   catchTimer.textContent = "Time!";
   const result = heartsCaught >= 12
-    ? "Okay, speedy! My heart never stood a chance. ♡"
+    ? "Okay, speedy! My heart never stood a chance."
     : heartsCaught >= 6
-      ? "You caught a bunch. I think you caught me first. ♡"
-      : "I was trying to make that easy for you, promise. Run it back? ♡";
+      ? "You caught a bunch. I think you caught me first."
+      : "I was trying to make that easy for you, promise. Run it back?";
   catchResult.textContent = result;
-  $("#startCatch").innerHTML = "Play again <span>↻</span>";
+  $("#startCatch").textContent = "Play again";
   burstHearts(Math.min(25, Math.max(10, heartsCaught + 8)));
 }
 
@@ -273,7 +260,7 @@ $("#startCatch").addEventListener("click", () => {
   catchResult.textContent = "";
   catchHint.textContent = "Go go go, Tanu!";
   catchHint.hidden = true;
-  $("#startCatch").innerHTML = "You're doing great <span>♡</span>";
+  $("#startCatch").textContent = "You're doing great";
   catchHeart.hidden = false;
   moveHeart();
   catchClock = window.setInterval(() => {
@@ -315,7 +302,7 @@ function renderQuestion() {
   $("#quizFeedback").textContent = "";
   const next = $("#nextQuestion");
   next.disabled = true;
-  next.innerHTML = quizIndex === quizQuestions.length - 1 ? "See my score <span>♡</span>" : "Pick an answer first <span>↗</span>";
+  next.textContent = quizIndex === quizQuestions.length - 1 ? "See my score" : "Pick an answer first";
   $("#quizChoices").replaceChildren(...question.options.map((choice, index) => {
     const option = document.createElement("button");
     option.type = "button";
@@ -338,12 +325,12 @@ function chooseAnswer(index) {
   });
   if (index === question.answer) {
     quizScore += 1;
-    $("#quizFeedback").textContent = ["You know me so well. ♡", "Correct! I had a feeling you'd get that.", "That's my girl. ♡", "I love how you get me.", "Of course it's you. Always."][quizIndex];
+    $("#quizFeedback").textContent = ["You know me so well.", "Correct! I had a feeling you'd get that.", "That's my girl.", "I love how you get me.", "Of course it's you. Always."][quizIndex];
   } else {
-    $("#quizFeedback").textContent = "Cute guess. The answer I was hoping for is highlighted. ♡";
+    $("#quizFeedback").textContent = "Cute guess. The answer I was hoping for is highlighted.";
   }
   $("#nextQuestion").disabled = false;
-  $("#nextQuestion").textContent = quizIndex === quizQuestions.length - 1 ? "See my score ♡" : "Next question ↗";
+  $("#nextQuestion").textContent = quizIndex === quizQuestions.length - 1 ? "See my score" : "Next question";
 }
 
 $("#nextQuestion").addEventListener("click", () => {
@@ -371,13 +358,13 @@ $("#nextQuestion").addEventListener("click", () => {
 renderQuestion();
 
 const dateIdeas = [
-  "Let's watch the sunset and see who spots the first star. 🌇",
-  "Chai, a long walk, and absolutely nowhere else to be. ☕",
-  "Let's pick a new place to eat and rate every bite together. 🍰",
-  "A little drive, our favorite songs, and your hand in mine. 🎶",
-  "Let's make dinner together. I'll be in charge of taste-testing. 🍓",
-  "A cozy movie night where we both pretend to share the snacks. 🍿",
-  "Let's take silly photos until we accidentally get a favorite one. 📸"
+  "Let's watch the sunset and see who spots the first star.",
+  "Chai, a long walk, and absolutely nowhere else to be.",
+  "Let's pick a new place to eat and rate every bite together.",
+  "A little drive, our favorite songs, and your hand in mine.",
+  "Let's make dinner together. I'll be in charge of taste-testing.",
+  "A cozy movie night where we both pretend to share the snacks.",
+  "Let's take silly photos until we accidentally get a favorite one."
 ];
 let lastDateIdea = -1;
 $("#spinDate").addEventListener("click", () => {
@@ -389,3 +376,205 @@ $("#spinDate").addEventListener("click", () => {
   idea.textContent = dateIdeas[nextIdea];
   burstHearts(8);
 });
+
+// Tanu's first-visit check-in sets the page palette and gives the tour a personal start.
+const welcomeDialog = $("#welcomeDialog");
+const welcomeSteps = [
+  {
+    key: "mood",
+    question: "How are you arriving here today?",
+    description: "Pick the shade that feels most like you, and I'll dress this little place around it.",
+    choices: [
+      { value: "sage", title: "Soft and quiet", detail: "A slower, gentler kind of day.", theme: "sage", themeName: "soft sage" },
+      { value: "honey", title: "Giddy and bright", detail: "I have a little extra sparkle today.", theme: "honey", themeName: "sunlit honey" },
+      { value: "plum", title: "A little dreamy", detail: "My head is somewhere in the clouds.", theme: "plum", themeName: "evening plum" },
+      { value: "rose", title: "In need of a hug", detail: "A warm, familiar corner sounds nice.", theme: "rose", themeName: "warm rose" }
+    ]
+  },
+  {
+    key: "feeling",
+    question: "And what would feel good right now?",
+    description: "I want this to meet you where you are.",
+    choices: [
+      { value: "cozy", title: "Something cozy", detail: "A quiet minute with me." },
+      { value: "laugh", title: "Make me laugh", detail: "I'm ready for something silly." },
+      { value: "hug", title: "A little reassurance", detail: "Remind me I'm loved." },
+      { value: "curious", title: "Let me explore", detail: "Show me what you made." }
+    ]
+  },
+  {
+    key: "love",
+    question: "How much do you love me today?",
+    description: "An extremely official rating, recorded for my records.",
+    range: true
+  },
+  {
+    key: "first",
+    question: "What should we do first?",
+    description: "Choose a little path through my surprise for you.",
+    choices: [
+      { value: "letter", title: "Read my letter", detail: "I put the important part in writing." },
+      { value: "gallery", title: "Look at our photos", detail: "A few favorite moments, all together." },
+      { value: "playroom", title: "Play something", detail: "I made you a couple of tiny games." },
+      { value: "surprise", title: "Surprise me", detail: "Pick something sweet for me." }
+    ]
+  }
+];
+let welcomeIndex = 0;
+let welcomeAnswers = { love: 8 };
+
+function renderWelcomeStep() {
+  const step = welcomeSteps[welcomeIndex];
+  $("#welcomeStepCount").textContent = `${String(welcomeIndex + 1).padStart(2, "0")} / ${String(welcomeSteps.length).padStart(2, "0")}`;
+  $("#welcomeProgress").style.width = `${((welcomeIndex + 1) / welcomeSteps.length) * 100}%`;
+  $("#welcomeQuestion").textContent = step.question;
+  $("#welcomeQuestion").animate([{ opacity: 0, transform: "translateY(6px)" }, { opacity: 1, transform: "translateY(0)" }], { duration: 320, easing: "ease-out" });
+  $("#welcomeDescription").textContent = step.description;
+  $("#welcomeBack").hidden = welcomeIndex === 0;
+  $("#welcomeFeedback").textContent = "";
+  const options = $("#welcomeOptions");
+  const range = $("#welcomeRangeWrap");
+  options.replaceChildren();
+  range.hidden = !step.range;
+
+  if (step.range) {
+    const input = $("#loveRate");
+    input.value = welcomeAnswers.love ?? 8;
+    $("#loveRateValue").textContent = input.value;
+    $("#welcomeNext").disabled = false;
+  } else {
+    const selected = welcomeAnswers[step.key];
+    $("#welcomeNext").disabled = !selected;
+    step.choices.forEach(choice => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "welcome-option";
+      button.setAttribute("aria-pressed", String(selected === choice.value));
+      if (choice.theme) button.dataset.themeChoice = choice.theme;
+      const title = document.createElement("strong");
+      title.textContent = choice.title;
+      const detail = document.createElement("small");
+      detail.textContent = choice.detail;
+      button.append(title, detail);
+      button.addEventListener("click", () => {
+        welcomeAnswers[step.key] = choice.value;
+        if (step.key === "mood") {
+          welcomeAnswers.themeName = choice.themeName;
+          // Let the page respond as soon as she picks a mood, while she is still in the check-in.
+          setTheme(choice.theme);
+        }
+        $$(".welcome-option", options).forEach(option => option.setAttribute("aria-pressed", String(option === button)));
+        $("#welcomeNext").disabled = false;
+        $("#welcomeFeedback").textContent = step.key === "mood" ? `I'll make this feel like ${choice.themeName}.` : "Got it. I'll keep that in mind as you wander.";
+      });
+      options.append(button);
+    });
+  }
+
+  $("#welcomeNext").textContent = welcomeIndex === welcomeSteps.length - 1 ? "Set the mood" : "Continue";
+}
+
+$("#loveRate").addEventListener("input", event => {
+  welcomeAnswers.love = Number(event.currentTarget.value);
+  $("#loveRateValue").textContent = event.currentTarget.value;
+  $("#welcomeFeedback").textContent = welcomeAnswers.love === 10 ? "I'm going to be insufferably happy about this." : "I'll treasure the honest rating.";
+});
+
+function finishWelcome(skip = false) {
+  const mood = welcomeSteps[0].choices.find(choice => choice.value === welcomeAnswers.mood);
+  const theme = mood?.theme ?? document.documentElement.dataset.theme ?? "rose";
+  setTheme(theme);
+  try {
+    sessionStorage.setItem("tanu-checkin-done", "yes");
+    sessionStorage.setItem("tanu-checkin-theme", theme);
+  } catch { /* The visit still works if storage is unavailable. */ }
+
+  const feelingNotes = {
+    cozy: "I hope this little corner feels like sitting beside me for a minute.",
+    laugh: "I hope something in here makes you laugh the way you make me laugh.",
+    hug: "If I were there, I'd give you the longest hug. For now, here's a little one in pixels.",
+    curious: "I put a lot of little pieces of my heart in here. I hope you find them."
+  };
+  const rating = Number(welcomeAnswers.love ?? 8);
+  const ratingNote = rating >= 10 ? "A ten out of ten? I'm saving that one for a rainy day." : rating >= 7 ? "Your rating is going to keep me smiling all evening." : "I'll keep earning those smiles, one ordinary day at a time.";
+  $("#todayNote").textContent = skip ? "I made this little place because I love you. Take your time looking around. — Abhishek" : `${feelingNotes[welcomeAnswers.feeling] ?? feelingNotes.cozy} ${ratingNote} — Abhishek`;
+  $("#checkinNote").hidden = false;
+  if (welcomeDialog.open) welcomeDialog.close();
+
+  if (!skip) {
+    const first = welcomeAnswers.first;
+    if (first === "letter") setTimeout(() => letterDialog.showModal(), 300);
+    else if (first === "surprise") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      setTimeout(() => $("#surpriseMe").click(), 400);
+    } else if (first) {
+      setTimeout(() => document.getElementById(first)?.scrollIntoView({ behavior: "smooth", block: "start" }), 250);
+    }
+  }
+}
+
+$("#welcomeNext").addEventListener("click", () => {
+  if ($("#welcomeNext").disabled) return;
+  if (welcomeIndex < welcomeSteps.length - 1) {
+    welcomeIndex += 1;
+    renderWelcomeStep();
+  } else {
+    finishWelcome();
+  }
+});
+$("#welcomeBack").addEventListener("click", () => {
+  if (welcomeIndex > 0) {
+    welcomeIndex -= 1;
+    renderWelcomeStep();
+  }
+});
+$("#welcomeSkip").addEventListener("click", () => finishWelcome(true));
+welcomeDialog.addEventListener("cancel", event => {
+  event.preventDefault();
+  finishWelcome(true);
+});
+$("#reopenWelcome").addEventListener("click", () => {
+  welcomeIndex = 0;
+  welcomeAnswers = { love: 8 };
+  renderWelcomeStep();
+  welcomeDialog.showModal();
+  nav.classList.remove("open");
+  menuToggle.setAttribute("aria-expanded", "false");
+  menuToggle.setAttribute("aria-label", "Open menu");
+  menuToggle.textContent = "Menu";
+});
+
+try {
+  const previousTheme = sessionStorage.getItem("tanu-checkin-theme");
+  if (previousTheme) setTheme(previousTheme);
+  if (!sessionStorage.getItem("tanu-checkin-done")) {
+    renderWelcomeStep();
+    welcomeDialog.showModal();
+  }
+} catch {
+  renderWelcomeStep();
+  welcomeDialog.showModal();
+}
+
+function setTheme(theme) {
+  document.documentElement.dataset.theme = theme;
+  const themeColor = getComputedStyle(document.documentElement).getPropertyValue("--paper").trim();
+  document.querySelector('meta[name="theme-color"]')?.setAttribute("content", themeColor);
+}
+
+// A small, pointer-led shift makes the cover photograph feel like a keepsake, not a stock card.
+const heroPhoto = $("#heroPhoto");
+if (heroPhoto && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  heroPhoto.addEventListener("pointermove", event => {
+    if (event.pointerType === "touch") return;
+    const box = heroPhoto.getBoundingClientRect();
+    const x = (event.clientX - box.left) / box.width - 0.5;
+    const y = (event.clientY - box.top) / box.height - 0.5;
+    heroPhoto.style.setProperty("--photo-x", `${x * 5}px`);
+    heroPhoto.style.setProperty("--photo-y", `${y * 5}px`);
+  });
+  heroPhoto.addEventListener("pointerleave", () => {
+    heroPhoto.style.setProperty("--photo-x", "0px");
+    heroPhoto.style.setProperty("--photo-y", "0px");
+  });
+}
