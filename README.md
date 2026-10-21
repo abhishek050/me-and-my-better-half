@@ -1,6 +1,6 @@
 # For Tanu, Always ♡
 
-A playful, mobile-first love scrapbook made by Abhishek for Tanu. It includes a photo gallery, love meter, tiny surprises, notes, and a list of future adventures. The site is plain HTML, CSS, and JavaScript, so it needs no build step.
+A playful, mobile-first love scrapbook made by Abhishek for Tanu. It includes a photo gallery, animated love meter, heart-catching game, affectionate quiz, date-night picker, tiny surprises, notes, and a list of future adventures. The site is plain HTML, CSS, and JavaScript, so it needs no build step.
 
 ## Run locally
 1. Unzip the folder.
