@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Caveat:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="compact.css">
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
@@ -26,7 +27,28 @@
     </nav>
   </header>
 
-  <main>
+  <div class="compact-experience" id="compactExperience">
+    <header class="compact-topbar">
+      <button class="compact-brand" data-room="home">for Tanu, always <span>·</span></button>
+      <nav class="room-nav" aria-label="Room navigation">
+        <button class="room-link active" data-room="home">Home</button><button class="room-link" data-room="moments">Moments</button><button class="room-link" data-room="play">Play</button><button class="room-link" data-room="notebook">Our list</button><button class="mood-button" id="compactMood">Mood</button>
+      </nav>
+    </header>
+    <main class="compact-main">
+      <section class="room active" id="room-home">
+        <div class="compact-copy"><p class="compact-eyebrow">A SMALL PLACE FOR US</p><h1>Hey Tanu,<br><em>you make life lovely.</em></h1><p>I made a tiny playground out of our moments, future plans, and a few little surprises.</p><div class="compact-actions"><button class="compact-primary" id="compactLetter">Read my note <span>→</span></button><button class="compact-text" data-room="play">Pick an activity</button></div><aside class="daily-note"><span>JUST FOR TODAY</span><p id="compactToday">Choose a mood and I’ll change the room to match you.</p></aside></div>
+        <div class="compact-scene"><div class="scene-ring ring-one"></div><div class="scene-ring ring-two"></div><figure><img src="assets/photos/together/together2.webp" alt="Tanu and me together"><figcaption>my favourite kind of us</figcaption></figure><button class="mood-orb" id="sceneMood"><span id="compactMoodLabel">pick the mood</span></button></div>
+        <div class="quick-room-actions"><button data-room="moments"><span>01</span> Open our photo drawer</button><button data-room="play"><span>02</span> Pick a tiny game</button><button data-room="notebook"><span>03</span> Add to our list</button></div>
+      </section>
+      <section class="room" id="room-moments" hidden><div class="compact-intro"><p class="compact-eyebrow">THE PHOTO DRAWER</p><h2>Moments I keep <em>coming back to.</em></h2><p>Tap a picture and I’ll tell you why it made the drawer.</p></div><div class="compact-gallery-tabs"><button class="compact-gallery-tab active" data-compact-filter="all">All</button><button class="compact-gallery-tab" data-compact-filter="together">Us</button><button class="compact-gallery-tab" data-compact-filter="tanu">You</button><button class="compact-gallery-tab" data-compact-filter="childhood">Tiny us</button></div><div class="compact-photo-grid" id="compactPhotoGrid"></div></section>
+      <section class="room" id="room-play" hidden><div class="compact-intro"><p class="compact-eyebrow">TINY PLAYROOM</p><h2>Pick your <em>mischief.</em></h2><p>Just choose something. No long scroll.</p></div><div class="compact-activity-tabs"><button class="compact-activity-tab active" data-compact-activity="catch">Catch</button><button class="compact-activity-tab" data-compact-activity="quiz">Quiz</button><button class="compact-activity-tab" data-compact-activity="date">Date picker</button><button class="compact-activity-tab" data-compact-activity="meter">Love meter</button></div><div class="compact-panel active" id="compact-activity-catch"><p class="compact-label">QUICK REFLEXES</p><h3>Catch my heart</h3><p>Catch it as many times as you can in 15 seconds.</p><div class="compact-score"><span>Caught <strong id="compactCatchScore">0</strong></span><span id="compactCatchTimer">15 sec</span></div><div class="compact-catch-arena" id="compactCatchArena"><p id="compactCatchHint">Hit start. I’ll try not to run away.</p><button id="compactCatchHeart" type="button" hidden aria-label="Catch my heart">♡</button></div><button class="compact-primary compact-small" id="compactStartCatch">Start catching</button><p class="compact-result" id="compactCatchResult"></p></div><div class="compact-panel" id="compact-activity-quiz" hidden><p class="compact-label">A QUIZ FROM ME</p><h3>How well do you know me?</h3><p class="compact-quiz-progress" id="compactQuizProgress"></p><h4 id="compactQuizQuestion"></h4><div class="compact-quiz-choices" id="compactQuizChoices"></div><p class="compact-result" id="compactQuizFeedback"></p><button class="compact-primary compact-small" id="compactNextQuiz" disabled>Pick an answer</button></div><div class="compact-panel" id="compact-activity-date" hidden><p class="compact-label">OUR NEXT LITTLE ADVENTURE</p><h3>What should we do next?</h3><p class="compact-date-idea" id="compactDateIdea">I have a few ideas tucked away.</p><button class="compact-primary compact-small" id="compactPickDate">Pick our date</button></div><div class="compact-panel" id="compact-activity-meter" hidden><p class="compact-label">VERY SERIOUS RESEARCH</p><h3>How much do I love you?</h3><strong class="compact-meter-number" id="compactMeterNumber">72</strong><input id="compactMeter" type="range" min="0" max="100" value="72" aria-label="How much I love Tanu"><p class="compact-meter-text" id="compactMeterText">A whole lot. And then some.</p><button class="compact-outline" id="compactNote">Give me a note</button></div></section>
+      <section class="room" id="room-notebook" hidden><div class="compact-notebook-head"><div><p class="compact-eyebrow">OUR LITTLE NOTEBOOK</p><h2>Things we’re <em>going to do.</em></h2><p>Put anything here. This browser will keep the list for us.</p></div><div class="compact-count"><strong id="compactWishCount">0</strong><span>plans saved</span></div></div><form class="compact-wish-form" id="compactWishForm"><input id="compactWishInput" maxlength="120" placeholder="Add our next little plan…" aria-label="Add a plan for us"><button class="compact-primary compact-small">Add it</button></form><div class="compact-idea-chips"><button data-compact-idea="Sunset and chai">Sunset and chai</button><button data-compact-idea="Cook something new together">Cook something new</button><button data-compact-idea="A long drive with our playlist">A long drive</button><button data-compact-idea="Make a ridiculous photo booth">Photo booth</button></div><ul class="compact-wish-list" id="compactWishList"></ul><p class="compact-notebook-note">The best plans are the ones we actually get to do together.</p></section>
+    </main>
+  </div>
+  <dialog id="compactMoodDialog" class="compact-dialog"><button class="compact-close" data-compact-close>Close</button><p class="compact-eyebrow">CHECK IN WITH ME</p><h2>What kind of day is it?</h2><p>Choose the energy and I’ll change the whole room.</p><div class="compact-mood-options"><button data-compact-theme="rose"><i></i><strong>Warm & soft</strong><small>I need a hug.</small></button><button data-compact-theme="sage"><i></i><strong>Quiet & easy</strong><small>Let’s keep it gentle.</small></button><button data-compact-theme="honey"><i></i><strong>Bright & silly</strong><small>I’m in a playful mood.</small></button><button data-compact-theme="plum"><i></i><strong>Dreamy & slow</strong><small>Stay here with me.</small></button></div></dialog>
+  <dialog id="compactLetterDialog" class="compact-dialog compact-letter"><button class="compact-close" data-compact-close>Close</button><p class="compact-hand">my dearest Tanu,</p><h2>To my favourite<br><em>person in the world.</em></h2><p>I made this because I wanted you to have a little place that feels like us: a bit silly, a little sentimental, and full of all the ordinary moments I want to remember.</p><p>I can’t wait to keep adding to our real story, one plan and one happy little day at a time.</p><p class="compact-hand">Always yours.</p></dialog>
+  <dialog id="compactLightbox" class="compact-dialog compact-lightbox"><button class="compact-close" data-compact-close>Close</button><img id="compactLightboxImage" alt="A memory from our photo drawer"><p id="compactLightboxCaption"></p></dialog>
+  <main class="legacy-site" hidden>
     <section class="hero section" id="home">
       <div class="hero-copy reveal">
         <p class="eyebrow">A little love letter from Abhishek</p>
@@ -262,6 +284,6 @@
     <p id="lightboxCaption" class="handwritten"></p>
   </dialog>
 
-  <script src="script.js"></script>
+  <script src="compact.js"></script>
 </body>
 </html>
